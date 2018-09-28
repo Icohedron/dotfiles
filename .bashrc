@@ -105,7 +105,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
+# Enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
@@ -116,6 +116,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# Auto-launch ssh-agent on startup. Assumes that the private ssh key
+# is located at ~/.ssh/id_rsa. Otherwise, the following command 
+# `ssh-add ~/path/to/my_key` should be ran to tell ssh-agent its
+# location.
 env=~/.ssh/agent.env
 
 agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
@@ -138,10 +142,14 @@ fi
 
 unset env
 
+# Set the default editor to neovim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-export DISPLAY=localhost:0
+# For WSL: set the localhost to be the display
+# export DISPLAY=localhost:0
+
+# Alias the python and pip commands to correspond to python3 and pip3
 # alias python=python3
 # alias pip=pip3
 
