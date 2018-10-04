@@ -1,23 +1,36 @@
+""" Preamble
+
+
+set encoding=utf-8
+scriptencoding utf-8
+
+
 """ Plugin installation
 
 
 " Install plugins in ~/.config/nvim/plugged
 call plug#begin('~/.config/nvim/plugged')
 
-" vim-surround / surround.vim
+Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
-
-" molokai
-Plug 'tomasr/molokai'
-
-" vim-airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
-" vim-signify
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-obsession'
 Plug 'mhinz/vim-signify'
+Plug 'ntpeters/vim-better-whitespace'
 
-" deoplete
+Plug 'ErichDonGubler/vim-sublime-monokai'
+Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+
+Plug 'w0rp/ale'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.vim'
+
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -26,15 +39,8 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-" ale
-Plug 'w0rp/ale'
-
-" fzf
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-
-" vim-rooter
-Plug 'airblade/vim-rooter'
+Plug 'zchee/deoplete-jedi'
+Plug 'zchee/deoplete-clang'
 
 " Initialize plugin system
 call plug#end()
@@ -68,12 +74,22 @@ call airline#parts#define_accent('mode', 'none')
 call airline#parts#define_accent('linenr', 'none')
 call airline#parts#define_accent('maxlinenr', 'none')
 
+
+"" markdown-preview
+
+" key bindings
+nmap <silent> <F8> <Plug>MarkdownPreview
+imap <silent> <F8> <Plug>MarkdownPreview
+nmap <silent> <F9> <Plug>StopMarkdownPreview
+imap <silent> <F9> <Plug>StopMarkdownPreview
+
+
 """ Colors, Themes, Background
 
 
 set termguicolors
 
-colorscheme molokai
+colorscheme sublimemonokai
 let g:airline_theme='dark'
 
 set background=dark
@@ -174,3 +190,4 @@ set autoread
 
 " Use system clipboard
 set clipboard^=unnamed,unnamedplus
+
