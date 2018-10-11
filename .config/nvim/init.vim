@@ -39,8 +39,8 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
-Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-clang'
+" Plug 'zchee/deoplete-jedi'
+" Plug 'zchee/deoplete-clang'
 
 " Initialize plugin system
 call plug#end()
@@ -188,6 +188,14 @@ set lazyredraw
 " Auto read file when it is changed from the outside
 set autoread
 
+" Highlight 80 character line
+set colorcolumn=80
+
+" Highlight column of cursor
+set cursorline
+
+" Highlight line of cursor
+set cursorcolumn
+
 " Use system clipboard
 set clipboard^=unnamed,unnamedplus
-
