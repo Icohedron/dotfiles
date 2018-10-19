@@ -30,6 +30,13 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'harenome/vim-mipssyntax'
+Plug 'leafgarland/typescript-vim'
+
+Plug 'mhartington/nvim-typescript' " Requires prettier. `npm install -g prettier`. May need to run install.sh in plugged/nvim-typescript
+Plug 'zchee/deoplete-jedi' " Requires jedi. `pip install jedi`
+Plug 'zchee/deoplete-clang' " Requires clang.
+Plug 'carlitux/deoplete-ternjs' " Requires ternjs. `npm install -g ternjs`
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -38,9 +45,6 @@ else
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
-" Plug 'zchee/deoplete-jedi'
-" Plug 'zchee/deoplete-clang'
 
 " Initialize plugin system
 call plug#end()
@@ -53,9 +57,18 @@ call plug#end()
 
 " Enable deoplete at startup
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#auto_complete_start_length = 1
+call deoplete#custom#option('num_processes', 1) " A workaround for a bug that prevents deoplete from working. https://github.com/Shougo/deoplete.nvim/issues/761
 
 " Close the suggestions window when completion is done
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+
+"" deoplete-clang
+
+" Adjust the file paths according to your clang setup
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm/lib/clang'
 
 
 "" ale
@@ -73,15 +86,6 @@ let g:airline#extensions#tabline#enabled = 1
 call airline#parts#define_accent('mode', 'none')
 call airline#parts#define_accent('linenr', 'none')
 call airline#parts#define_accent('maxlinenr', 'none')
-
-
-"" markdown-preview
-
-" key bindings
-nmap <silent> <F8> <Plug>MarkdownPreview
-imap <silent> <F8> <Plug>MarkdownPreview
-nmap <silent> <F9> <Plug>StopMarkdownPreview
-imap <silent> <F9> <Plug>StopMarkdownPreview
 
 
 """ Colors, Themes, Background
