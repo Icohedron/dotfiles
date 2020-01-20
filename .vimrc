@@ -133,8 +133,8 @@ nnoremap <leader>d :<C-u>bd<CR>
 " Save file using leader key (Spacemacs style)
 nnoremap <leader>fs :w<CR>
 
-" Open terminal (Spacemacs style)
-nnoremap <leader>'' :terminal<CR>
+" Quit using leader key (Spacemacs style)
+nnoremap <leader>qq :q<CR>
 
 " Search and Replace
 nmap <Leader>s :<C-u>%s//g<Left><Left>
@@ -193,6 +193,9 @@ set cursorline
 
 " Highlight line of cursor
 set cursorcolumn
+
+" Allow switching buffers without saving modifications
+set hidden
 
 " Use system clipboard
 set clipboard^=unnamed,unnamedplus
