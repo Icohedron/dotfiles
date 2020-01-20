@@ -8,37 +8,30 @@ scriptencoding utf-8
 """ Plugin installation
 
 
-" Install plugins in ~/.config/nvim/plugged
+" Install plugins in ~/.config/nvim/plugged using junegunn/vim-plug
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'airblade/vim-rooter'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-obsession'
-Plug 'mhinz/vim-signify'
-Plug 'ntpeters/vim-better-whitespace'
+Plug 'airblade/vim-rooter' " automatic working directory changes
+Plug 'tpope/vim-surround' " cs to change a surrounding. cst to change surroundings to something. ds to delete surroundings
+Plug 'tpope/vim-commentary' " gcc to comment a line. gc to comment a selection/motion
+Plug 'tpope/vim-repeat' " better repeat .
+Plug 'tpope/vim-obsession' " automatic session (:mksession) management
+Plug 'mhinz/vim-signify' " git diffs
+Plug 'ntpeters/vim-better-whitespace' " whitespace highlighting
+Plug 'glts/vim-radical' " number base conversions with gA, crd, crx, cro, crb
 
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 
-Plug 'w0rp/ale'
+Plug 'w0rp/ale' " linting engine
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' " fuzzy file finding
 
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.vim'
-Plug 'harenome/vim-mipssyntax'
-Plug 'leafgarland/typescript-vim'
+Plug 'plasticboy/vim-markdown' " markdown syntax
 
-Plug 'mhartington/nvim-typescript' " Requires prettier. `npm install -g prettier`. May need to run install.sh in plugged/nvim-typescript
-Plug 'zchee/deoplete-jedi' " Requires jedi. `pip install jedi`
-Plug 'zchee/deoplete-clang' " Requires clang.
-Plug 'carlitux/deoplete-ternjs' " Requires ternjs. `npm install -g ternjs`
-
-if has('nvim')
+if has('nvim') " autocompletion engine
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
   Plug 'Shougo/deoplete.nvim'
@@ -67,8 +60,8 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 "" deoplete-clang
 
 " Adjust the file paths according to your clang setup
-let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm/lib/clang'
+" let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm/lib/libclang.so'
+" let g:deoplete#sources#clang#clang_header = '/usr/lib/llvm/lib/clang'
 
 
 "" ale
@@ -83,9 +76,9 @@ let g:ale_python_pylint_executable = 'pylint3'
 let g:airline#extensions#tabline#enabled = 1
 
 " Tell airline not to bold some text elements due to a bug causing incorrect font colors in WSL
-call airline#parts#define_accent('mode', 'none')
-call airline#parts#define_accent('linenr', 'none')
-call airline#parts#define_accent('maxlinenr', 'none')
+" call airline#parts#define_accent('mode', 'none')
+" call airline#parts#define_accent('linenr', 'none')
+" call airline#parts#define_accent('maxlinenr', 'none')
 
 
 """ Colors, Themes, Background
@@ -102,7 +95,7 @@ set background=dark
 "" Powerline Symbols
 
 " Set the two values below to 1 or 0 depending on if you would like to use powerline symbols
-" I recommend DejaVuSansMono
+" I recommend the DejaVu Sans Mono powerline font
 let g:airline_powerline_fonts = 1
 let g:tmuxline_powerline_separators = 1
 
@@ -119,7 +112,7 @@ noremap <leader>ff :<C-u>Files<CR>
 " Let <Tab> do deoplete autocompletion
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
-" Relative numbering
+" Relative number toggling
 function! NumberToggle()
   if(&relativenumber == 1)
     set nornu
@@ -203,3 +196,4 @@ set cursorcolumn
 
 " Use system clipboard
 set clipboard^=unnamed,unnamedplus
+
