@@ -36,7 +36,7 @@ fi
 if $using_neovim
 then
     mkdir -p $HOME/.config/nvim/
-    cp ./vimrc $HOME/.config/nvim/init.vim
+    cp .vimrc $HOME/.config/nvim/init.vim
     curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
